@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicola Christanto - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 5px solid #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #764ba2;
+        }
+
+        .linkedin-link {
+            display: inline-block;
+            background: #0077b5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .linkedin-link:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .education-item {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .education-year {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .education-school {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 5px;
+        }
+
+        .job {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .current-job {
+            border-left: 5px solid #28a745;
+            background: linear-gradient(135deg, #f8fff8 0%, #e8ffe8 100%);
+        }
+
+        .current-badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .job-company {
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .job-period {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .current-job .job-period {
+            background: #28a745;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .job-tasks {
+            margin-top: 15px;
+        }
+
+        .task {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            color: #444;
+        }
+
+        .current-job .task {
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .skill-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header, .section {
+                padding: 25px;
+            }
+
+            .name {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 1.6em;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .job-period {
+                margin-top: 10px;
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="profile-img">NC</div>
+            <h1 class="name">Nicola Christanto</h1>
+            <div class="title">Site Coordinator | 3D Concrete Construction Professional</div>
+            <div class="contact-info">
+                📞 <a href="tel:+6285329813921">+62 895-3298-1392</a> | 
+                ✉️ <a href="mailto:nicolchristian@gmail.com">nicolchristian@gmail.com</a>
+            </div>
+            <a href="https://www.linkedin.com/in/nicolachristanto" class="linkedin-link" target="_blank">
+                🔗 LinkedIn Profile
+            </a>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                I am a dedicated professional ready to bring positive energy to the workplace. With diverse work experience across multiple industries, I have gained deep understanding of discipline and practical skills necessary to thrive in professional environments and achieve company targets. I specialize in technical engineering, manufacturing, quality control, and construction coordination, with a strong focus on efficiency and quality results. Currently, I am expanding my expertise in innovative 3D concrete printing technology and construction management.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <div class="education-year">2016 - 2019</div>
+                <div class="education-school">Senior High School 1 Jonggol - Science & Mathematics (Natural Sciences)</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+
+            <div class="job current-job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Site Coordinator <span class="current-badge">Current</span></div>
+                        <div class="job-company">Legends 3D</div>
+                    </div>
+                    <div class="job-period">2024 - Present</div>
+                </div>
+                <div class="job-description">
+                    Leading comprehensive site coordination for 3D concrete printing construction projects. Managing all aspects of project execution from budget planning to quality control, ensuring optimal printing results and efficient team operations in cutting-edge construction technology.
+                </div>
+                <div class="job-tasks">
+                    <div class="task">
+                        <strong>Budget Planning & Management:</strong> Designing and managing project budgets, cost analysis, and financial planning for 3D concrete printing construction projects.
+                    </div>
+                    <div class="task">
+                        <strong>Technical Problem Solving:</strong> Troubleshooting and resolving technical issues to ensure perfect printing quality and optimal concrete formation results.
+                    </div>
+                    <div class="task">
+                        <strong>Team Leadership:</strong> Managing and coordinating construction teams, assigning tasks, and ensuring efficient workflow coordination across all project phases.
+                    </div>
+                    <div class="task">
+                        <strong>Procurement Management:</strong> Handling material purchasing, vendor coordination, and supply chain management for construction materials and equipment.
+                    </div>
+                    <div class="task">
+                        <strong>Reporting & Documentation:</strong> Preparing comprehensive weekly progress reports and managing monthly attendance records for project documentation and stakeholder communication.
+                    </div>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Technician</div>
+                        <div class="job-company">PT. Basic Element Space</div>
+                    </div>
+                    <div class="job-period">June 2024 - December 2024</div>
+                </div>
+                <div class="job-description">
+                    Responsible for machine maintenance, machine repair, calibration and machine testing to ensure results meet standards.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Machining & Quality Control Specialist</div>
+                        <div class="job-company">PT. Atsumitec Indonesia</div>
+                    </div>
+                    <div class="job-period">June 2023 - May 2024</div>
+                </div>
+                <div class="job-tasks">
+                    <div class="task">
+                        <strong>CNC Machining:</strong> Responsible for every work process by operating CNC machines to create scale diameters in automotive engine manufacturing, maintaining machines and work environment.
+                    </div>
+                    <div class="task">
+                        <strong>Quality Control:</strong> Process conducted to inspect, measure, test, and ensure products meet company-established standards and specifications.
+                    </div>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Machining, Welding & Painting Specialist</div>
+                        <div class="job-company">PT. Astra Honda Motor</div>
+                    </div>
+                    <div class="job-period">December 2019 - March 2023</div>
+                </div>
+                <div class="job-tasks">
+                    <div class="task">
+                        <strong>CNC Machining:</strong> Responsible for work processes by operating CNC machines to create scale diameters in motorcycle engine manufacturing, maintaining machines and work environment.
+                    </div>
+                    <div class="task">
+                        <strong>Robotic Welding:</strong> Performed welding processes and inspection to create motorcycle frames using robotic welding systems.
+                    </div>
+                    <div class="task">
+                        <strong>Automated Painting:</strong> Conducted painting processes and color mixing for motorcycle body parts using semi-automatic spray guns and robotic systems.
+                    </div>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Logistics Assistant</div>
+                        <div class="job-company">PT. CJ Logistics</div>
+                    </div>
+                    <div class="job-period">May 2019 - August 2019</div>
+                </div>
+                <div class="job-description">
+                    Responsible for assisting administrative staff with inventory requests and all administrative matters related to company operations.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">🏗️</div>
+                    <div class="skill-name">3D Construction Coordination</div>
+                    <div class="skill-description">Site management and coordination for 3D concrete printing projects</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">🔧</div>
+                    <div class="skill-name">CNC Machining</div>
+                    <div class="skill-description">Precision component manufacturing using CNC machinery</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">⚡</div>
+                    <div class="skill-name">Robotic Welding</div>
+                    <div class="skill-description">Automated welding systems for automotive frame construction</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">🎨</div>
+                    <div class="skill-name">Industrial Painting</div>
+                    <div class="skill-description">Automated and semi-automated painting processes</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">✅</div>
+                    <div class="skill-name">Quality Assurance</div>
+                    <div class="skill-description">Product inspection and quality control standards</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">🔩</div>
+                    <div class="skill-name">Machine Maintenance</div>
+                    <div class="skill-description">Industrial equipment maintenance and calibration</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">📦</div>
+                    <div class="skill-name">Project Management</div>
+                    <div class="skill-description">Logistics coordination and administrative management</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">🏢</div>
+                    <div class="skill-name">Construction Technology</div>
+                    <div class="skill-description">Innovation in 3D printing concrete construction methods</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling animation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.job').forEach(job => {
+            job.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            job.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click animation to skill categories
+        document.querySelectorAll('.skill-category').forEach(skill => {
+            skill.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // LinkedIn link tracking
+        document.querySelector('.linkedin-link').addEventListener('click', function() {
+            console.log('LinkedIn profile visited');
+        });
+    </script>
+</body>
+</html>
