@@ -61,6 +61,10 @@
             font-size: 48px;
             color: #667eea;
             font-weight: bold;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .name {
@@ -381,12 +385,12 @@
 
     <div class="container">
         <header class="header">
-            <div class="profile-img">NC</div>
+            <div class="profile-img" id="profileImage">NC</div>
             <h1 class="name">Nicola Christanto</h1>
             <div class="title">Site Coordinator | 3D Concrete Construction Professional</div>
             <div class="contact-info">
-                📞 <a href="tel:+6285329813921">+62 895-3298-13921</a> | 
-                ✉️ <a href="mailto:nicolchristian@gmail.com">nicolchristan@gmail.com</a>
+                📞 <a href="tel:+6285329813921">+62 895-3298-1392</a> | 
+                ✉️ <a href="mailto:nicolchristian@gmail.com">nicolchristian@gmail.com</a>
             </div>
             <a href="https://www.linkedin.com/in/nicolachristanto" class="linkedin-link" target="_blank">
                 🔗 LinkedIn Profile
@@ -615,6 +619,46 @@
         // LinkedIn link tracking
         document.querySelector('.linkedin-link').addEventListener('click', function() {
             console.log('LinkedIn profile visited');
+        });
+
+        // Profile image functionality
+        const profileImg = document.getElementById('profileImage');
+        
+        // Function to handle image upload
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImg.style.backgroundImage = `url(${e.target.result})`;
+                    profileImg.innerHTML = ''; // Remove "NC" text
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Create file input for image upload
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+        fileInput.addEventListener('change', handleImageUpload);
+        document.body.appendChild(fileInput);
+
+        // Add click event to profile image
+        profileImg.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        // Add hover effect to indicate clickable
+        profileImg.style.cursor = 'pointer';
+        profileImg.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        profileImg.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
         });
     </script>
 </body>
